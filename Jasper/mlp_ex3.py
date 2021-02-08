@@ -48,24 +48,38 @@ X_train /= 255
 X_val /= 255
 X_test /= 255
 
-# convert 1D class arrays to 10D class matrices
-y_train = to_categorical(y_train, 10)
-y_val = to_categorical(y_val, 10)
-y_test = to_categorical(y_test, 10)
+# sort digits in classes
+for i in [y_train, y_val, y_test]:
+    for j in range(len(i)):
+        if i[j] in [1, 7]:
+            i[j] = 0  # vertical digits
+        elif i[j] in [0, 6, 8, 9]:
+            i[j] = 1  # loopy digits
+        elif i[j] in [2, 5]:
+            i[j] = 2  # curly digits
+        elif i[j] in [3, 4]:
+            i[j] = 3  # other
+        else:
+            raise AssertionError("this shouldn't happen")
+
+# convert 1D class arrays to 4D class matrices
+y_train = to_categorical(y_train, 4)
+y_val = to_categorical(y_val, 4)
+y_test = to_categorical(y_test, 4)
 
 model = Sequential()
 # flatten the 28x28x1 pixel input images to a row of pixels (a 1D-array)
 model.add(Flatten(input_shape=(28, 28, 1)))
 # fully connected layer with 64 neurons and ReLU nonlinearity
 model.add(Dense(64, activation='relu'))
-# output layer with 10 nodes (one for each class) and softmax nonlinearity
-model.add(Dense(10, activation='softmax'))
+# output layer with 4 nodes (one for each class) and softmax nonlinearity
+model.add(Dense(4, activation='softmax'))
 
 # compile the model
 model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
 # use this variable to name your model
-model_name = "2.1_64"
+model_name = "2.3"
 
 # create a way to monitor our model in Tensorboard
 if model_name in os.listdir('logs'):
@@ -77,6 +91,7 @@ tensorboard = TensorBoard("logs/" + model_name)
 
 # launch tensorboard
 from tensorboard import program
+
 tb = program.TensorBoard()
 tb.configure(argv=[None, '--logdir', 'logs'])
 url = tb.launch()
