@@ -61,6 +61,15 @@ Train a neural network model (the specific architecture is up to you) for a four
 Loss:  8.588351249694824
 Accuracy:  0.21610000729560852
 
-for loop for train and val
-Loss:  8.903286933898926
-Accuracy:  0.21619999408721924
+for loop for train and val and test
+LINEAR
+Loss:  0.4387108385562897
+Accuracy:  0.8521000146865845
+
+RELU
+Loss:  0.13397099077701569
+Accuracy:  0.9563000202178955
+
+epoch 15 ipv 10
+Loss:  0.11859365552663803
+Accuracy:  0.9624999761581421
