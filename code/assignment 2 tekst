@@ -1,0 +1,66 @@
+EXERCISE 1
+mlp origineel:
+Loss:  0.1905284821987152
+Accuracy:  0.9470000267028809
+
+100 neurons ipv 64:
+Loss:  0.17517775297164917
+Accuracy:  0.949999988079071
+
+500 neurons ipv 64:
+Loss:  0.15886269509792328
+Accuracy:  0.9545999765396118
+
+2 layers van 64 neurons en beide relu:
+Loss:  0.14473490417003632
+Accuracy:  0.9573000073432922
+
+2 layers, één van 64 neurons en één van 500 en beide relu:
+Loss:  0.14695151150226593
+Accuracy:  0.9569000005722046
+
+2 layers van 500 neurons en beide relu:
+Loss:  0.11153364181518555
+Accuracy:  0.9677000045776367
+
+Bepalen welk model het beste is door te kijken naar de accuracy.
+
+EXERCISE 2
+mlp origineel:
+Loss:  0.1905284821987152
+Accuracy:  0.9470000267028809
+
+1. Neural netowrk without any hidden layers
+geen hidden layers:
+Loss:  0.31178972125053406
+Accuracy:  0.9140999913215637
+
+2. Neural network with 3 hidden layers with ReLU activations.
+drie ReLU hidden layers
+Loss:  0.1233925074338913
+Accuracy:  0.9641000032424927
+
+3. Neural network with 3 hidden layers with linear activations
+drie linear hidden layers
+Loss:  0.27689287066459656
+Accuracy:  0.9228000044822693
+
+Duidelijk dat nonlinear het beter doet dan lineair. Dit komt omdat nonlinearity gebruikt wordt voor categorical problems.
+Hier zijn er 10 categoriën, namelijk alle getallen die mogelijk kunnen zijn als uitkomst (0,1,2,3,4,5,6,7,8,9).
+Bij non-linear wordt berekend wat de kans is dat het beeld tot elke categorie behoort en de hoogste kans wordt gekozen.
+Bij linear is de outcome een continuous value, wat veel lastiger te voorspellen is omdat het hier niet echt om een oppervlakte
+bijvoorbeeld gaat. Hierdoor is de accuracy bi linear ook veel lager.
+
+EXERCISE 3
+Train a neural network model (the specific architecture is up to you) for a four class classification problem derived from MNIST in the following way:
+"vertical digits": 1, 7
+"loopy digits": 0, 6, 8, 9
+"curly digits": 2, 5
+"other": 3, 4
+
+Loss:  8.588351249694824
+Accuracy:  0.21610000729560852
+
+for loop for train and val
+Loss:  8.903286933898926
+Accuracy:  0.21619999408721924
