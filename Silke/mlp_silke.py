@@ -73,6 +73,20 @@ for i in y_val:
         #shape_train.append('other')
         shape_val.append(4)
 
+shape_test = []
+for i in y_test:
+    if i == 1 or i == 7:
+        #shape_train.append('vertical digits')
+        shape_test.append(1)
+    if i == 0 or i == 6 or i == 8 or i == 9:
+        #shape_train.append('loopy digits')
+        shape_test.append(2)
+    if i == 2 or i == 5:
+        #shape_train.append('curly digits')
+        shape_test.append(3)
+    if i == 3 or i == 4:
+        #shape_train.append('other')
+        shape_test.append(4)
 # show the class label distribution in the validation dataset
 #plt_classes(shape_val)
 
@@ -100,8 +114,8 @@ X_test /= 255
 
 # convert 1D class arrays to 10D class matrices
 y_train = to_categorical(shape_train, 10)
-y_val = to_categorical(y_val, 10)
-y_test = to_categorical(y_test, 10)
+y_val = to_categorical(shape_val, 10)
+y_test = to_categorical(shape_test, 10)
 
 
 model = Sequential()
