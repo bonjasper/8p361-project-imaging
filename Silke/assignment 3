@@ -1,0 +1,19 @@
+EXERCISE 1
+The AUC (Area under the curve) of ROC (Receiver Operating Characteristisc) curve is used for visualizing the performance
+of a multiclass classification problem. It is a measurement for the performance for the classification problem at various
+threshold settings. It gives information about the capability of the model to distinguish between the classes.
+The model is better when AUC is higher (near to 1).
+When AUC is 0.5, it means the model has no capacity of class seperation.
+
+SOURCE: https://towardsdatascience.com/understanding-auc-roc-curve-68b2303cc9c5
+
+Code bron:
+https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html
+https://machinelearningmastery.com/how-to-calculate-precision-recall-f1-and-more-for-deep-learning-models/
+
+EXERCISE 2
+ "A fully connected layer offers learns features from all the combinations of the features of the previous layer,
+ where a convolutional layer relies on local spatial coherence with a small receptive field."
+ (https://www.quora.com/What-are-the-advantages-and-disadvantages-of-fully-connected-layers-in-convolutional-neural-network)
+
+EXCERCISE 3
