@@ -33,63 +33,6 @@ y_train, y_val = train_test_split(y_train, test_size=0.10, random_state=101)
 
 
 
-def plt_classes(y, num_class):
-    plt.figure()
-    plt.hist(y, bins=range(0, num_class + 1), align='left', rwidth=0.9)
-    plt.xlabel('Class')
-    plt.ylabel('Class count')
-    plt.xticks(range(0, num_class))
-    plt.title('Class distribution')
-
-shape_train = []
-for i in y_train:
-    if i == 1 or i == 7:
-        #shape_train.append('vertical digits')
-        shape_train.append(1)
-    if i == 0 or i == 6 or i == 8 or i == 9:
-        #shape_train.append('loopy digits')
-        shape_train.append(2)
-    if i == 2 or i == 5:
-        #shape_train.append('curly digits')
-        shape_train.append(3)
-    if i == 3 or i == 4:
-        #shape_train.append('other')
-        shape_train.append(4)
-# show the class label distribution in the training dataset
-#plt_classes(shape_train, 4)
-
-shape_val = []
-for i in y_val:
-    if i == 1 or i == 7:
-        #shape_train.append('vertical digits')
-        shape_val.append(1)
-    if i == 0 or i == 6 or i == 8 or i == 9:
-        #shape_train.append('loopy digits')
-        shape_val.append(2)
-    if i == 2 or i == 5:
-        #shape_train.append('curly digits')
-        shape_val.append(3)
-    if i == 3 or i == 4:
-        #shape_train.append('other')
-        shape_val.append(4)
-
-shape_test = []
-for i in y_test:
-    if i == 1 or i == 7:
-        #shape_train.append('vertical digits')
-        shape_test.append(1)
-    if i == 0 or i == 6 or i == 8 or i == 9:
-        #shape_train.append('loopy digits')
-        shape_test.append(2)
-    if i == 2 or i == 5:
-        #shape_train.append('curly digits')
-        shape_test.append(3)
-    if i == 3 or i == 4:
-        #shape_train.append('other')
-        shape_test.append(4)
-# show the class label distribution in the validation dataset
-#plt_classes(shape_val)
-
 # the shape of the data matrix is NxHxW, where
 # N is the number of images,
 # H and W are the height and width of the images
@@ -113,18 +56,42 @@ X_test /= 255
 
 
 # convert 1D class arrays to 10D class matrices
-y_train = to_categorical(shape_train, 10)
-y_val = to_categorical(shape_val, 10)
-y_test = to_categorical(shape_test, 10)
+y_train = to_categorical(y_train, 10)
+y_val = to_categorical(y_val, 10)
+y_test = to_categorical(y_test, 10)
 
 
 model = Sequential()
 # flatten the 28x28x1 pixel input images to a row of pixels (a 1D-array)
 model.add(Flatten(input_shape=(28,28,1))) 
 # fully connected layer with 64 neurons and ReLU nonlinearity
-model.add(Dense(64, activation='linear'))
-#model.add(Dense(64, activation='linear'))
-#model.add(Dense(64, activation='linear'))
+#model.add(Dense(64, activation='relu'))
+
+#exercise 1
+#---------------------------------------------------------------------
+# fully connected layer(s) with 128 neurons and ReLU nonlinearity
+
+#model.add(Dense(128, activation='relu'))
+#model.add(Dense(128, activation='relu'))
+
+#add a 2nd layer with 64 neurons and ReLU nonlinearity
+
+#model.add(Dense(64, activation='relu'))
+
+#---------------------------------------------------------------------
+#end of exercise 1
+
+#exercise 2
+#---------------------------------------------------------------------
+#2.2: Neural network with 3 hidden layers with
+# linear activations
+model.add(Dense(64))
+model.add(Dense(64))
+model.add(Dense(64))
+
+#---------------------------------------------------------------------
+#end of exercise 2
+
 # output layer with 10 nodes (one for each class) and softmax nonlinearity
 model.add(Dense(10, activation='softmax')) 
 
@@ -133,7 +100,7 @@ model.add(Dense(10, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
 
 # use this variable to name your model
-model_name="my_second_model"
+model_name="ex2_3layers_lin"
 
 # create a way to monitor our model in Tensorboard
 tensorboard = TensorBoard("logs/" + model_name)
@@ -147,5 +114,3 @@ score = model.evaluate(X_test, y_test, verbose=0)
 
 print("Loss: ",score[0])
 print("Accuracy: ",score[1])
-
-
