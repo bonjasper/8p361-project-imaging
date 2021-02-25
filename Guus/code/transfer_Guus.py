@@ -71,7 +71,7 @@ model.compile(SGD(lr=0.001, momentum=0.95), loss = 'binary_crossentropy', metric
 model.summary()
 
 # get the data generators
-train_gen, val_gen = get_pcam_generators('/change/me/to/dataset/path')
+train_gen, val_gen = get_pcam_generators(r'C:\Users\guusj\Documents\Technische Universiteit Eindhoven\Q3\Project Imaging - BIA (8P361 - Y3Q3)\Assignment_1 (introduction)\Data_assignment1_introduction')
 
 
 # save the model and weights
